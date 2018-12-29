@@ -114,6 +114,5 @@ public class SelectionTest {
                 if (i>4) return "Too big";
                 else return "Too small";
         }
-        return null;
     }
 }
