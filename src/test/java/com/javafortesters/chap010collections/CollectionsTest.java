@@ -85,6 +85,23 @@ public class CollectionsTest {
         assertEquals(1,users.size());
     }
 
+    @Test
+    public void userMap() {
+
+        Map<String,User> users = new HashMap<>();
+        assertTrue(users.isEmpty());
+
+        User bob = new User("bob","b1");
+        User bill = new User("bill","b2");
+        users.put("first",bob);
+        assertEquals(1,users.size());
+        assertEquals(bob,users.get("first"));
+        users.put("first",bill);
+        assertEquals(1,users.size());
+        assertEquals(bill,users.get("first"));
+
+    }
+
     private void addUsersB(Collection<User> users) {
         users.add(new User("bob","b1"));
         users.add(new User("bill","b2"));
