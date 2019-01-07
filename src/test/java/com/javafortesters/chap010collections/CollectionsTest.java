@@ -22,7 +22,7 @@ public class CollectionsTest {
         assertEquals("Monday is at position 3", 3, loopCount);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void userCollections() {
 
         Collection<User> usersB = new ArrayList<>();
@@ -50,7 +50,7 @@ public class CollectionsTest {
 
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void userList() {
 
         List<User> users = new ArrayList<>();
