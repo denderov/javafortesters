@@ -24,6 +24,10 @@ threeUsers[i].setPassword("password");
         threeUsers[0] = new User("bob","bA55Word");
         threeUsers[1] = new User("eris","eA55Word");
         threeUsers[2] = new User("ken","kA55Word");
+        assertEquals("bob",threeUsers[0].getUsername());
+        assertEquals("eris",threeUsers[1].getUsername());
+        assertEquals("ken",threeUsers[2].getUsername());
+
 /*
 for (User user:threeUsers
 ) {
