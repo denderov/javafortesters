@@ -3,51 +3,59 @@ package com.javafortesters.chap009arrays;
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ArrayTest {
     @Test
     public void userTest() {
         User[] threeUsers = new User[3];
-        String username;
-        String password;
-//        for (int i = 0; i < 3; i++) {
-//            threeUsers[i].username = "username";
-////            threeUsers[i].setUsername("username"+Integer.toString(i));
-////            threeUsers[i].setPassword("password"+Integer.toString(i));
-//            threeUsers[i].setPassword("password");
-//        }
+//        threeUsers = new User[3];
+        /*
+for (int i = 0; i < 3; i++) {
+threeUsers[i].username = "username";
+//            threeUsers[i].setUsername("username"+Integer.toString(i));
+//            threeUsers[i].setPassword("password"+Integer.toString(i));
+threeUsers[i].setPassword("password");
+}
+*/
         threeUsers[0] = new User("bob","bA55Word");
         threeUsers[1] = new User("eris","eA55Word");
         threeUsers[2] = new User("ken","kA55Word");
-//        for (User user:threeUsers
-//             ) {
-//            System.out.println("username: "+user.getUsername());
-//            System.out.println("password: "+user.getPassword());
-//        }
+/*
+for (User user:threeUsers
+) {
+System.out.println("username: "+user.getUsername());
+System.out.println("password: "+user.getPassword());
+}
+*/
 
         User[] oneHundredUsers = new User[100];
         for (int i = 0; i < 100; i++) {
-            oneHundredUsers[i] = new User("username"+Integer.toString(i+1),"password"+Integer.toString(i+1));
+            int count = i + 1;
+            oneHundredUsers[i] = new User("username"+ count,"password"+ count);
         }
-//        for (User user:oneHundredUsers
-//        ) {
-//            System.out.println("username: "+user.getUsername());
-//            System.out.println("password: "+user.getPassword());
-//        }
+/*
+for (User user:oneHundredUsers
+) {
+System.out.println("username: "+user.getUsername());
+System.out.println("password: "+user.getPassword());
+}
+*/
         for (int i = 0; i < oneHundredUsers.length; i++) {
-            assertEquals("username"+Integer.toString(i+1),oneHundredUsers[i].getUsername());
-            assertEquals("password"+Integer.toString(i+1),oneHundredUsers[i].getPassword());
+            int count = i + 1;
+            assertEquals("username"+ count,oneHundredUsers[i].getUsername());
+            assertEquals("password"+ count,oneHundredUsers[i].getPassword());
         }
 
         User[] tenUsers;
         tenUsers = Arrays.copyOf(oneHundredUsers,10);
         for (int i = 0; i < tenUsers.length; i++) {
-            assertEquals("username"+Integer.toString(i+1),tenUsers[i].getUsername());
-            assertEquals("password"+Integer.toString(i+1),tenUsers[i].getPassword());
+            int count = i + 1;
+            assertEquals("username"+ count,tenUsers[i].getUsername());
+            assertEquals("password"+ count,tenUsers[i].getPassword());
         }
     }
 
