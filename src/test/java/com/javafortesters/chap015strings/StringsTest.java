@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class StringsTest {
 
@@ -20,5 +21,11 @@ public class StringsTest {
         String testStr = new String(charArray);
         byte[] byteArray = testStr.getBytes();
         System.out.println(byteArray);
+    }
+
+    @Test
+    public void regionMatchesTest() {
+        String hello = "Hello Fella";
+        assertTrue(hello.regionMatches(false,0, "young lady",6,2));
     }
 }
