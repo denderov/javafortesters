@@ -2,6 +2,8 @@ package com.javafortesters.chap015strings;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -20,12 +22,12 @@ public class StringsTest {
         assertThat(new String(charArray), is("Test"));
         String testStr = new String(charArray);
         byte[] byteArray = testStr.getBytes();
-        System.out.println(byteArray);
+        System.out.println(Arrays.toString(byteArray));
     }
 
     @Test
     public void regionMatchesTest() {
         String hello = "Hello Fella";
-        assertTrue(hello.regionMatches(false,0, "young lady",6,2));
+        assertTrue(hello.regionMatches(9, "young lady",6,2));
     }
 }
