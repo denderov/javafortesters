@@ -1,12 +1,13 @@
 package com.javafortesters.chap015strings;
 
+import com.javafortesters.domainentities.str.InvalidPassword;
+import com.javafortesters.domainentities.str.User;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StringsTest {
 
@@ -30,4 +31,35 @@ public class StringsTest {
         String hello = "Hello Fella";
         assertTrue(hello.regionMatches(9, "young lady",6,2));
     }
+
+    @Test
+    public void regexTest() throws InvalidPassword {
+        User user = new User("bob","passwo4rd");
+        assertThat("passwo4rd",is(user.getPassword()));
+    }
+
+    @Test (expected = InvalidPassword.class)
+    public void regexTestInvalid() throws InvalidPassword {
+        User user = new User("bob","password");
+        assertThat("password",is(user.getPassword()));
+        StringBuilder sb=new StringBuilder("hello");
+    }
+
+    @Test
+    public void stringBuilderTest() {
+        StringBuilder sb = new StringBuilder(8);
+        assertThat(8,is(sb.capacity()));
+        sb.append("Hello stringBuilderTest!");
+        assertTrue(sb.capacity()>8);
+        sb.ensureCapacity(42);
+        assertTrue(sb.capacity()>=42);
+        sb.setLength(0);
+        sb.insert(0, "Hello");
+        assertEquals("Hello",sb.toString());
+        sb.insert(sb.length(), '!');
+        assertEquals("Hello!",sb.toString());
+        sb.insert(sb.length()-1, " World");
+        assertEquals("Hello World!",sb.toString());
+    }
+
 }
