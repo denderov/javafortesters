@@ -1,5 +1,6 @@
 package com.javafortesters.chap016random;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -106,6 +107,34 @@ public class RandomTest {
         for (Map.Entry<Integer, Integer> e : agesCount.entrySet()) {
             System.out.println(""+e.getKey()+":"+e.getValue());
         }
+    }
+
+    @Test
+    public void testSeedRandom() {
+        Random generate = new Random(1234567L);
+        assertTrue(generate.nextInt()==1042961893);
+        assertTrue(generate.nextLong()==-6749250865724111202L);
+        assertTrue(generate.nextDouble()==0.44762832574617084d);
+        assertTrue(generate.nextGaussian()==-0.11571220872310763d);
+        assertTrue(generate.nextFloat()==0.33144182f);
+        assertFalse(generate.nextBoolean());
+    }
+
+    @Test
+    public void testRandomString() {
+        Random generate = new Random();
+        String correctValues = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        StringBuilder result= new StringBuilder();
+
+        for (int i = 0; i < 100; i++) {
+            result.append(correctValues.charAt(generate.nextInt(correctValues.length())));
+        }
+
+        System.out.println(result);
+
+        Assert.assertTrue(result.length()==100);
+        Assert.assertTrue(result.toString().matches("[A-Z ]+"));
+
     }
 
 }
