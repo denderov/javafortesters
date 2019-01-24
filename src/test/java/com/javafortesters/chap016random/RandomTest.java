@@ -52,4 +52,34 @@ public class RandomTest {
         assertFalse(randomInts.contains(21));
     }
 
+    @Test
+    public void testGaussianRandom() {
+        Random generate = new Random();
+        int d1 = 0;
+        int d2 = 0;
+        int d3 = 0;
+        int d4 = 0;
+        double value;
+        for (int i = 0; i < 1000; i++) {
+            value = Math.abs(generate.nextGaussian());
+            if (value < 4) {
+                d4++;
+                if (value < 3) {
+                    d3++;
+                    if (value < 2) {
+                        d2++;
+                        if (value < 1) {
+                            d1++;
+                        }
+                    }
+                }
+            }
+        }
+
+        System.out.println("about 68.3% one standard deviation = "+d1/10.0);
+        System.out.println("about 95.4% two standard deviation = "+d2/10.0);
+        System.out.println("about 99.7% three standard deviation = "+d3/10.0);
+        System.out.println("about 99.9% four standard deviation = "+d4/10.0);
+    }
+
 }
