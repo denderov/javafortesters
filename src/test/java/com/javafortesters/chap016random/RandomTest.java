@@ -3,10 +3,7 @@ package com.javafortesters.chap016random;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -80,6 +77,35 @@ public class RandomTest {
         System.out.println("about 95.4% two standard deviation = "+d2/10.0);
         System.out.println("about 99.7% three standard deviation = "+d3/10.0);
         System.out.println("about 99.9% four standard deviation = "+d4/10.0);
+    }
+
+    @Test
+    public void testGaussianAge() {
+
+        Map<Integer, Integer> agesCount = new HashMap<>();
+        Random generate = new Random();
+        Integer age = 0;
+
+        for (int i = 0; i < 1000; i++)
+        {
+
+            do {
+                age = (int)(generate.nextGaussian()*5)+35;
+            } while (age<0&&age>150);
+
+            Integer count = agesCount.get(age);
+
+            if (count == null) {
+                agesCount.put(age, 1);
+            } else {
+                agesCount.put(age,++count);
+            }
+
+        }
+
+        for (Map.Entry<Integer, Integer> e : agesCount.entrySet()) {
+            System.out.println(""+e.getKey()+":"+e.getValue());
+        }
     }
 
 }
