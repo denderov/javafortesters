@@ -85,14 +85,14 @@ public class RandomTest {
 
         Map<Integer, Integer> agesCount = new HashMap<>();
         Random generate = new Random();
-        Integer age = 0;
 
         for (int i = 0; i < 1000; i++)
         {
 
+            int age;
             do {
                 age = (int)(generate.nextGaussian()*5)+35;
-            } while (age<0&&age>150);
+            } while (age<0||age>150);
 
             Integer count = agesCount.get(age);
 
@@ -105,19 +105,19 @@ public class RandomTest {
         }
 
         for (Map.Entry<Integer, Integer> e : agesCount.entrySet()) {
-            System.out.println(""+e.getKey()+":"+e.getValue());
+            System.out.println(e.getKey()+":"+e.getValue()+" "+System.currentTimeMillis()+" "+System.nanoTime());
         }
     }
 
     @Test
     public void testSeedRandom() {
         Random generate = new Random(1234567L);
-        assertTrue(generate.nextInt()==1042961893);
-        assertTrue(generate.nextLong()==-6749250865724111202L);
-        assertTrue(generate.nextDouble()==0.44762832574617084d);
-        assertTrue(generate.nextGaussian()==-0.11571220872310763d);
-        assertTrue(generate.nextFloat()==0.33144182f);
-        assertFalse(generate.nextBoolean());
+        assertEquals(1042961893, generate.nextInt());
+        assertEquals(generate.nextLong(), -6749250865724111202L);
+        assertEquals(0.44762832574617084d, generate.nextDouble(), 0.0);
+        assertEquals(generate.nextGaussian(), -0.11571220872310763d, 0.0);
+        assertEquals(0.33144182f, generate.nextFloat(), 0.0);
+        assertEquals(false,generate.nextBoolean());
     }
 
     @Test
@@ -132,7 +132,7 @@ public class RandomTest {
 
         System.out.println(result);
 
-        Assert.assertTrue(result.length()==100);
+        assertEquals(100, result.length());
         Assert.assertTrue(result.toString().matches("[A-Z ]+"));
 
     }
