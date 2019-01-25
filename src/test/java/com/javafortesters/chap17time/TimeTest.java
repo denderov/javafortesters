@@ -26,7 +26,7 @@ public class TimeTest {
         long uniqueValue = System.currentTimeMillis();
         byte chrN;
         while (uniqueValue > 1) {
-            chrN = (byte) (uniqueValue%52);
+            chrN = (byte) (64+uniqueValue%52);
             if (chrN > 90) {
                 chrN += 6;
             }
