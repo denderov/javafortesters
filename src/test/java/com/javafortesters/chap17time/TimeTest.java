@@ -5,7 +5,11 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class TimeTest {
 
@@ -25,16 +29,22 @@ public class TimeTest {
         StringBuilder stringBuilder = new StringBuilder();
         long uniqueValue = System.currentTimeMillis();
         byte chrN;
-        while (uniqueValue > 1) {
-            chrN = (byte) (64+uniqueValue%52);
+        while (uniqueValue > 0) {
+            chrN = (byte) (65+uniqueValue%52);
             if (chrN > 90) {
                 chrN += 6;
             }
-            stringBuilder.append((char)chrN);
+            stringBuilder.insert(0,(char)chrN);
             uniqueValue = uniqueValue/52;
         }
 
-        System.out.println(stringBuilder.toString());
+        stringBuilder.insert(0, "user");
+
+        String userName = stringBuilder.toString();
+        System.out.println(userName);
+
+        assertFalse(userName.matches(".*\\d+.*"));
+        assertTrue(userName.matches("\\w+"));
 
     }
 
