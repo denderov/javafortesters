@@ -26,9 +26,11 @@ public class TimeTest {
 
     @Test
     public void noNumbersName() {
+
         StringBuilder stringBuilder = new StringBuilder();
         long uniqueValue = System.currentTimeMillis();
         byte chrN;
+
         while (uniqueValue > 0) {
             chrN = (byte) (65+uniqueValue%52);
             if (chrN > 90) {
