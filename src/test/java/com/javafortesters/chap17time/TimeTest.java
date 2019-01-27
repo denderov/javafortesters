@@ -2,6 +2,7 @@ package com.javafortesters.chap17time;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -74,6 +75,27 @@ public class TimeTest {
         assertEquals(2,calendar.get(Calendar.WEEK_OF_MONTH));
         assertEquals(50,calendar.get(Calendar.WEEK_OF_YEAR));
         assertEquals(349,calendar.get(Calendar.DAY_OF_YEAR));
+
+        calendar.set(Calendar.DAY_OF_MONTH,23);
+        calendar.add(Calendar.DAY_OF_MONTH,-20);
+        calendar.add(Calendar.MONTH,-6);
+        calendar.add(Calendar.YEAR,-2);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy");
+        String formattedDate = sdf.format(calendar.getTime());
+
+        System.out.println(calendar.getTime().toString());
+
+        assertEquals("3 Jun 2011",formattedDate);
+
+        calendar.set(2013,Calendar.DECEMBER,15,23,49,54);
+        calendar.add(Calendar.DAY_OF_MONTH,17);
+        assertEquals(2014,calendar.get(Calendar.YEAR));
+
+        calendar.set(2013,Calendar.DECEMBER,15,23,49,54);
+        calendar.roll(Calendar.DAY_OF_MONTH,17);
+        assertEquals(2013,calendar.get(Calendar.YEAR));
+
     }
 
 }
