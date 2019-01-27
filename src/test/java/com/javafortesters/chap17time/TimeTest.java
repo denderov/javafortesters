@@ -59,6 +59,7 @@ public class TimeTest {
         System.out.println(calendar.getTime().toString());
         //15th December 2013, at 23:49 and 54 seconds
         calendar.set(2013,Calendar.DECEMBER,15,23,49,54);
+
         assertEquals(2013,calendar.get(Calendar.YEAR));
         assertEquals(Calendar.DECEMBER,calendar.get(Calendar.MONTH));
         assertEquals(15,calendar.get(Calendar.DATE));
@@ -67,6 +68,12 @@ public class TimeTest {
         assertEquals(54,calendar.get(Calendar.SECOND));
         assertEquals(Calendar.PM,calendar.get(Calendar.AM_PM));
 
+        assertEquals(Calendar.SUNDAY,calendar.get(Calendar.DAY_OF_WEEK));
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setMinimalDaysInFirstWeek(6);
+        assertEquals(2,calendar.get(Calendar.WEEK_OF_MONTH));
+        assertEquals(50,calendar.get(Calendar.WEEK_OF_YEAR));
+        assertEquals(349,calendar.get(Calendar.DAY_OF_YEAR));
     }
 
 }
