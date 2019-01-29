@@ -14,22 +14,39 @@ public class testFiles {
         File inputFile = writeTestDataFile();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
 
-        String line;
-        while((line = bufferedReader.readLine())!=null){
-            System.out.println(line);
+        try {
+            String line;
+            while((line = bufferedReader.readLine())!=null){
+                System.out.println(line);
+            }
+        } finally {
+            bufferedReader.close();
         }
 
-//        try {
-//            null;
-//        } finally {
-//            bufferedReader.close();
-//        }
+    }
+
+    @Test
+    public void testSuffixOfTempFile() throws IOException {
+
+        System.out.println(System.getProperty("java.io.tmpdir"));
+        File outputFile = writeTestDataFile();
+        System.out.println(outputFile.getName());
+        outputFile.delete();
+        outputFile = writeTestDataFile(".txt");
+        System.out.println(outputFile.getName());
+        outputFile.delete();
 
     }
 
     private File writeTestDataFile() throws IOException {
 
-        File outputFile = File.createTempFile("forreading", null);
+        return writeTestDataFile(null);
+
+    }
+
+    private File writeTestDataFile(String suffix) throws IOException {
+
+        File outputFile = File.createTempFile("forreading", suffix);
         //wrappers is not necessary. there is constructor with type of File in PrintWriter
         PrintWriter printWriter = new PrintWriter(outputFile);
 
