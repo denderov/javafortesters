@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class testFiles {
+public class TestFiles {
 
     @Test
     public void testReadFile() throws IOException {
