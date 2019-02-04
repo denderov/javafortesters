@@ -2,6 +2,7 @@ package com.javafortesters.chap21collectionsrevisited;
 
 import com.javafortesters.domainentities.User;
 import com.javafortesters.domainentities.UserComparator;
+import com.javafortesters.domainentities.UserWithComparator;
 import com.javafortesters.domainobject.DupeUserComparator;
 import org.junit.Test;
 
@@ -62,6 +63,30 @@ public class CollectionsRevisitedTest {
         assertEquals(2,userSortedList.size());
 
         User[] users = new User[userSortedList.size()];
+        userSortedList.toArray(users);
+
+        assertEquals(first.getUsername(),users[0].getUsername());
+        assertEquals(second.getUsername(),users[1].getUsername());
+        assertEquals(secondSecond.getUsername(),users[1].getUsername());
+
+    }
+
+    @Test
+    public void sortedSetForUserWithComparator() {
+        UserWithComparator first = new UserWithComparator("First", "pwd");
+        UserWithComparator second = new UserWithComparator("Second", "pwd");
+        UserWithComparator secondSecond = new UserWithComparator("Second", "pwd");
+
+        SortedSet<UserWithComparator> userSortedList =
+                new TreeSet<>();
+
+        userSortedList.add(first);
+        userSortedList.add(second);
+        userSortedList.add(secondSecond);
+
+        assertEquals(2,userSortedList.size());
+
+        UserWithComparator[] users = new UserWithComparator[userSortedList.size()];
         userSortedList.toArray(users);
 
         assertEquals(first.getUsername(),users[0].getUsername());

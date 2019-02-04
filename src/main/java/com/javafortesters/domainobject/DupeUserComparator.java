@@ -12,6 +12,7 @@ public class DupeUserComparator implements Comparator {
         User user2 = (User)oUser2;
 
         if (user1.getUsername().compareTo(user2.getUsername()) == 0) {
+            System.out.println("Compare "+user1.getUsername()+" with "+user2.getUsername()+" = "+0);
             return 0;
         }
 
@@ -26,6 +27,8 @@ public class DupeUserComparator implements Comparator {
         if(val==0){
             val = user1.getUsername().compareTo(user2.getUsername());
         }
+
+        System.out.println("Compare "+user1.getUsername()+" with "+user2.getUsername()+" = "+val);
 
         return val;
     }
