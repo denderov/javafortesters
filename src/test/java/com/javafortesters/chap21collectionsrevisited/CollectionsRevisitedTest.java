@@ -95,7 +95,25 @@ public class CollectionsRevisitedTest {
 
     }
 
+    @Test
+    public void iterateMapBySortedSet() {
 
+        Map<UserWithComparator, String> notesOfUser = new HashMap<>();
+
+        UserWithComparator first = new UserWithComparator("First","password1");
+        UserWithComparator second = new UserWithComparator("Second","password1");
+
+        notesOfUser.put(second,"note 1");
+        notesOfUser.put(first,"note 2");
+
+        SortedSet<UserWithComparator> users = new TreeSet<>(notesOfUser.keySet());
+
+        for (UserWithComparator u:
+                users) {
+            System.out.println(u.getUsername());
+        }
+
+    }
 
 
 }
